@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: PRABANJAN.M /H3>
+<H3>ENTER YOUR REGISTER NO. 212224240116 </H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>28/10/2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,55 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+import pandas as pd
+import csv
+
+d=pd.read_csv("FuelConsumption (2).csv")
+print("FuelConsumption Content:")
+print()
+print(d.head())
+print()
+print("To check whether there is any null value:")
+print(d.isnull().values.any())
+print()
+X=d.drop(['MAKE','MODEL','VEHICLECLASS','TRANSMISSION',
+    'FUELTYPE', 'CO2EMISSIONS',
+    'FUELCONSUMPTION_COMB_MPG'],axis=1)
+y=d['CO2EMISSIONS']
+print("After Dropping off unwanted content from the Dataset:")
+print()
+print(X.head())
+print()
+print(y.head())
+
+xtrain,xtest,ytrain,ytest=train_test_split(X,y,test_size=0.25)
+
+scaler=StandardScaler()
+
+xtrainscaler=scaler.fit_transform(xtrain)
+xtestscaler=scaler.transform(xtest)
+
+xtrainscaled_data = pd.DataFrame(xtrainscaler, columns=xtrain.columns)
+
+print()
+print("After Normalising and spliting of data from the Dataset:")
+print()
+print(xtrainscaled_data.head())
+print()
+print(ytrain.head())
+
+
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/cd02543f-116a-464b-94a4-8346dd16fb39" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/90bf5f5d-c0f5-47a5-9b42-b47f1e872c2e" />
+
 
 
 ## RESULT:
